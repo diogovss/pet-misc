@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Animal</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<h2>Cadastrar Novo Animal</h2>
+<form action="#" th:action="@{/animal/save}" th:object="${animal}" method="post">
+  Nome: <input type="text" th:field="*{nome}"><br>
+  Dono:
+  <select th:field="*{dono}">
+    <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}"></option>
+  </select><br>
+  <input type="submit" value="Salvar">
+</form>
+<a th:href="@{/}">Home</a><br>
+<h2>Animais Cadastrados</h2>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Nome</th>
+    <th>Dono</th>
+    <!-- Adicione outras colunas conforme necessário -->
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="animal : ${animais}">
+    <td th:text="${animal.id}"></td>
+    <td th:text="${animal.nome}"></td>
+    <td th:text="${animal.dono.nome}"></td>
+    <!-- Adicione outras colunas conforme necessário -->
+  </tr>
+  </tbody>
+</table>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
